@@ -1,4 +1,4 @@
-package com.dao;
+package com.dao.Identities;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 
-import javax.persistence.Id;
 import java.io.Serializable;
 
 @AllArgsConstructor
@@ -15,7 +14,7 @@ import java.io.Serializable;
 @Setter
 public class ProductId implements Serializable {
 
-    private Long id; // matches name of @Id attribute
+    private Long pid; // matches name of @Id attribute
     private Long manufacturer; // name should match to @Id attribute and type of Manufacturer PK
 
     @Override
@@ -23,12 +22,12 @@ public class ProductId implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ProductId pId1 = (ProductId) o;
-        if (!id.equals(pId1.id)) return false;
+        if (!pid.equals(pId1.pid)) return false;
         return manufacturer.equals(pId1.manufacturer);
     }
 
     @Override
     public int hashCode() {
-        return id.hashCode()+manufacturer.hashCode();
+        return pid.hashCode()+manufacturer.hashCode();
     }
 }

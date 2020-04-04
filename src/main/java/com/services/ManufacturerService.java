@@ -33,9 +33,9 @@ public class ManufacturerService {
     }
 
     @Transactional
-    public boolean addManufacturer(Manufacturer m)
+    public Manufacturer addManufacturer(Manufacturer m)
     {
-        return manufacturerRepository.save(m)!=null;
+        return manufacturerRepository.save(m);
     }
 
     @Transactional

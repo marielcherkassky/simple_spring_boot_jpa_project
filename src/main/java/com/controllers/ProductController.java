@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/product")
 public class ProductController {
 
     @Autowired
@@ -26,12 +26,12 @@ public class ProductController {
     @Autowired
     private ModelMapper modelMapper;
 
-    @RequestMapping(value = "/product/bulk/", method = RequestMethod.POST)
+    @RequestMapping(value = "bulk", method = RequestMethod.POST)
     public boolean insertProducts(@RequestBody List<Product> p) {
          return productService.addProducts(p);
     }
 
-    @RequestMapping(value = "/product/", method = RequestMethod.POST)
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
     public HttpStatus insertProduct(@RequestBody ProductCreationDTO pcd) {
         Product p = mapProductCreationDTOtoProduct(pcd);
         if(p.getManufacturer() == null)
@@ -39,17 +39,17 @@ public class ProductController {
         return productService.addProduct(p) ? HttpStatus.CREATED : HttpStatus.BAD_REQUEST;
     }
 
-    @RequestMapping(value = "/product/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public List<Product> getProductByPK(@PathVariable Long id, @RequestBody Manufacturer m) {
         return productService.getProductByEmbeddedId(id, m);
     }
 
-    @RequestMapping(value = "/product/", method = RequestMethod.GET)
+    @RequestMapping(value = "/", method = RequestMethod.GET)
     public List<Product> getAllProducts() {
         return productService.getAllProducts();
     }
 
-    @RequestMapping(value = "/product/test", method = RequestMethod.GET)
+    @RequestMapping(value = "test", method = RequestMethod.GET)
     public String home() {
         return "ProductController boot is working!";
 

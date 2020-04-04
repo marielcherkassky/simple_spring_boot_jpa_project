@@ -1,5 +1,6 @@
 package com.dao;
 
+import com.dao.Identities.ProductId;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -21,12 +22,12 @@ public class Product {
 
     @Id
     @SequenceGenerator(name = "product_id_seq", sequenceName = "product_id_seq")
-    @GeneratedValue(strategy=GenerationType.SEQUENCE,generator = "product_id_seq")
+    @GeneratedValue(strategy= GenerationType.SEQUENCE,generator = "product_id_seq")
     /*
     The Product object’s id property is annotated with @Id so that JPA recognizes it as the object’s ID.
     The id property is also annotated with @GeneratedValue to indicate that the ID should be generated automatically.
      */
-    private Long id;
+    private Long pid=-1L; // initiate it for just a random value in order to hanlde hibernate bug
 
     /* UUID Id :
     @GeneratedValue(generator="system-uuid")

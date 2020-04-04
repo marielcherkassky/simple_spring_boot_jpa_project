@@ -12,36 +12,36 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/manufacturer/")
 public class ManufacturerController {
 
     @Autowired
     private ManufacturerService manufacturerService;
 
-    @RequestMapping(value = "/manufacturer/", method = RequestMethod.GET)
+    @RequestMapping(value = "/", method = RequestMethod.GET)
     public List<Manufacturer> getAllManufacturer() {
         return manufacturerService.getAllManufacturers();
     }
 
-    @RequestMapping(value = "/manufacturer/{id}", method = RequestMethod.GET)
-    public Optional<Manufacturer> getManufacturer(@RequestParam Long id) {
+    @RequestMapping(value = "{id}", method = RequestMethod.GET)
+    public Optional<Manufacturer> getManufacturer(@PathVariable Long id) {
         return manufacturerService.getManufacturer(id);
     }
 
-    @RequestMapping(value = "/manufacturer/", method = RequestMethod.POST)
+    @RequestMapping(value = "add", method = RequestMethod.POST)
     // @RequestBody - map the json input to the manufacturer object
-    public boolean addManufacturer(@RequestBody Manufacturer m) {
+    public Manufacturer addManufacturer(@RequestBody Manufacturer m) {
         return manufacturerService.addManufacturer(m);
     }
 
-    @RequestMapping(value = "/manufacturer/bulk", method = RequestMethod.POST)
+    @RequestMapping(value = "bulk", method = RequestMethod.POST)
     // @RequestBody - map the json input to the manufacturer object
     public List<Manufacturer> addManufacturers(@RequestBody List<Manufacturer> ms) {
         return manufacturerService.addManufacturers(ms);
     }
 
 
-    @RequestMapping(value = "/manufacturer/test", method = RequestMethod.GET)
+    @RequestMapping(value = "test", method = RequestMethod.GET)
     public String home() {
         return "ManufacturerController boot is working!";
 

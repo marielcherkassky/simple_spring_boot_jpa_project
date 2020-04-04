@@ -29,21 +29,21 @@ public class ProductService {
     private EntityManager em;
 
 
-    @Transactional //@Transactional annotation indicates that the method will be executed in the transaction. Spring will take care of transaction management.
+/*    @Transactional //@Transactional annotation indicates that the method will be executed in the transaction. Spring will take care of transaction management.
     public List<Product> getProductsOnlyById(List<Long> ids)
     {
-        return productRepository.findAllById(ids);
-    }
+        return productRepository.findById(ids);
+    }*/
 
     @Transactional
     public List<Product> getProductByEmbeddedId(Long id, Manufacturer m)
     {
-        return productRepository.findByIdAndManufacturer(id,m);
+        return productRepository.findByPidAndManufacturer(id,m);
     }
 
 
 
-
+    @Transactional
     public List<Product> getAllProducts()
     {
         return productRepository.findAll();
