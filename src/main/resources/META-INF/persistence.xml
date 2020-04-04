@@ -6,7 +6,7 @@
         <class>com.dao.Product</class>
         <properties>
             <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" />
-            <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://10.20.15.44:1234/marieldb" />
+            <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://10.20.11.179:1234/marieldb" />
             <property name="javax.persistence.jdbc.user" value="postgres" />
             <property name="javax.persistence.jdbc.password" value="postgres" />
             <property name="hibernate.hbm2ddl.auto" value="update"/>

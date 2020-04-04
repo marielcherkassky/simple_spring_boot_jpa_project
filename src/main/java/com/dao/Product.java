@@ -1,7 +1,7 @@
 package com.dao;
 
 import com.dao.Identities.ProductId;
-import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -34,8 +34,10 @@ public class Product {
     @GenericGenerator(name="system-uuid",strategy = "uuid")*/
 
     @Id
-    @ManyToOne(fetch=FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="manufacturer",referencedColumnName = "id")
+    @JsonIdentityInfo(generator= ObjectIdGenerators.PropertyGenerator.class, property="id")
+    @JsonIdentityReference(alwaysAsId=true)
     private Manufacturer manufacturer;
 
     private String name;

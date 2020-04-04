@@ -1,5 +1,6 @@
 package com.services;
 
+import com.dao.Identities.ProductId;
 import com.dao.Manufacturer;
 import com.dao.Product;
 import org.hibernate.Session;
@@ -15,6 +16,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProductService {
@@ -29,16 +31,16 @@ public class ProductService {
     private EntityManager em;
 
 
-/*    @Transactional //@Transactional annotation indicates that the method will be executed in the transaction. Spring will take care of transaction management.
+    @Transactional //@Transactional annotation indicates that the method will be executed in the transaction. Spring will take care of transaction management.
     public List<Product> getProductsOnlyById(List<Long> ids)
     {
-        return productRepository.findById(ids);
-    }*/
+        return productRepository.findByPidIn(ids);
+    }
 
     @Transactional
-    public List<Product> getProductByEmbeddedId(Long id, Manufacturer m)
+    public Optional<Product> getProductByEmbeddedId(ProductId productId)
     {
-        return productRepository.findByPidAndManufacturer(id,m);
+        return productRepository.findById(productId);
     }
 
 
@@ -50,9 +52,9 @@ public class ProductService {
     }
 
     @Transactional
-    public boolean addProduct(Product p)
+    public Product addProduct(Product p)
     {
-        return productRepository.save(p)!=null;
+        return productRepository.save(p);
     }
 
 

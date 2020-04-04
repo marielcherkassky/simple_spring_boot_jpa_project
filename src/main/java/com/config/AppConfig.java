@@ -1,5 +1,7 @@
 package com.config;
 
+import com.DTO.ProductGetDTO;
+import com.dao.Product;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
@@ -65,7 +67,12 @@ public class AppConfig {
 
     @Bean
     public ModelMapper modelMapper() {
-        return new ModelMapper();
+
+      ModelMapper mapper = new ModelMapper();
+        mapper.typeMap(Product.class, ProductGetDTO.class)
+                .addMappings(m -> m.map(src -> src.getManufacturer().getId(), ProductGetDTO::setManufacturer));
+      return mapper;
+
     }
     }
 
